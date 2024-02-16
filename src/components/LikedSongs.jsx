@@ -1,11 +1,13 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectSong } from '../redux/actions'
+import { selectSong, unlikeSong } from '../redux/actions'
+import { Button } from 'react-bootstrap'
 
 const LikedSongs = () => {
   const dispatch = useDispatch()
   const liked = useSelector((state) => state.songs.liked)
+
   return (
     <Row>
       <Col xs={10}>
@@ -15,12 +17,21 @@ const LikedSongs = () => {
             {liked.length > 0 ? (
               liked.map((el) => (
                 <Col className="text-center" key={el.id}>
-                  <img
-                    className="img-fluid pointer"
-                    src={el.album.cover_xl}
-                    alt="track"
-                    onClick={() => dispatch(selectSong(el))}
-                  />
+                  <div className="position-relative cardContainer">
+                    <img
+                      className="w-100 pointer"
+                      src={el.album.cover_xl}
+                      alt="track"
+                      onClick={() => dispatch(selectSong(el))}
+                    />
+                    <Button
+                      variant="danger"
+                      className="position-absolute rounded-circle deleteBtn"
+                      onClick={() => dispatch(unlikeSong(el.id))}
+                    >
+                      <i className="bi bi-trash3-fill"></i>
+                    </Button>
+                  </div>
                   <p>
                     Track: {'"' + el.title + '"'}
                     <br />

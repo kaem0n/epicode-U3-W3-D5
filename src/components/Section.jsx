@@ -1,15 +1,17 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
+import Button from 'react-bootstrap/Button'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { selectSong } from '../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { likeSong, selectSong, unlikeSong } from '../redux/actions'
 
 // eslint-disable-next-line react/prop-types
 const Section = ({ artist, playlist, length }) => {
+  const dispatch = useDispatch()
+  const likedSongs = useSelector((state) => state.songs.liked)
   const [tracks, setTracks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const dispatch = useDispatch()
 
   const fillMusicSection = async () => {
     try {
@@ -50,12 +52,29 @@ const Section = ({ artist, playlist, length }) => {
               tracks.length > 0 &&
               tracks.map((el) => (
                 <Col className="text-center" key={el.id}>
-                  <img
-                    className="img-fluid pointer"
-                    src={el.album.cover_xl}
-                    alt="track"
-                    onClick={() => dispatch(selectSong(el))}
-                  />
+                  <div className="position-relative cardContainer">
+                    <img
+                      className="img-fluid pointer w-100"
+                      src={el.album.cover_xl}
+                      alt="track"
+                      onClick={() => dispatch(selectSong(el))}
+                    />
+                    <Button
+                      variant={likedSongs.includes(el) ? 'danger' : 'success'}
+                      className="position-absolute rounded-circle deleteBtn"
+                      onClick={() =>
+                        likedSongs.includes(el)
+                          ? dispatch(unlikeSong(el.id))
+                          : dispatch(likeSong(el))
+                      }
+                    >
+                      {likedSongs.includes(el) ? (
+                        <i className="bi bi-trash3-fill"></i>
+                      ) : (
+                        <i className="bi bi-heart-fill"></i>
+                      )}
+                    </Button>
+                  </div>
                   <p>
                     Track: {'"' + el.title + '"'}
                     <br />

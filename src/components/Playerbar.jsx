@@ -22,7 +22,7 @@ const Playerbar = () => {
       <Row className="h-100">
         <Col lg={10} className="offset-lg-2">
           <Row className="h-100 justify-content-between align-items-center">
-            <Col xs={3}></Col>
+            <Col xs={1} sm={2} md={3}></Col>
             <Col xs={6} md={4} className="playerControls">
               <div className="d-flex">
                 <a href="#">
@@ -45,11 +45,13 @@ const Playerbar = () => {
                 <div role="progressbar"></div>
               </div>
             </Col>
-            <Col xs={3}>
+            <Col xs={5} sm={4} md={3}>
               {selectedSong && (
                 <Row className="align-items-center">
                   <Col
-                    xs={9}
+                    xs={8}
+                    md={8}
+                    xl={9}
                     className="d-flex justify-content-between align-items-center"
                   >
                     <i
@@ -67,7 +69,7 @@ const Playerbar = () => {
                       </p>
                     </div>
                   </Col>
-                  <Col xs={3}>
+                  <Col xs={4} md={4} xl={3}>
                     <img
                       src={selectedSong.album.cover_xl}
                       alt={selectedSong.album.id}

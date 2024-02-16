@@ -185,3 +185,20 @@ ul {
   margin: 0;
   text-align: right;
 }
+
+.deleteBtn {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 3%;
+  right: 3%;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.cardContainer:hover .deleteBtn {
+  opacity: 1;
+  transition: 0.3s;
+}

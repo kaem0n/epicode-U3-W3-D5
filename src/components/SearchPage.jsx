@@ -77,4 +77,6 @@ const queries = [
   'Pink Floyd',
   'Britney Spears',
   'Billie Eilish',
+  'Al Bano',
+  'Massimo Ranieri',
 ]
