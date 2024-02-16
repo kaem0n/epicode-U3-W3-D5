@@ -1,8 +1,8 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
-import { useEffect, useState } from 'react'
 import SongCard from './SongCard'
+import { useEffect, useState } from 'react'
 
 // eslint-disable-next-line react/prop-types
 const Section = ({ artist, playlist, length }) => {
