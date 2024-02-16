@@ -1,15 +1,11 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
-import Button from 'react-bootstrap/Button'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { likeSong, selectSong, unlikeSong } from '../redux/actions'
+import SongCard from './SongCard'
 
 // eslint-disable-next-line react/prop-types
 const Section = ({ artist, playlist, length }) => {
-  const dispatch = useDispatch()
-  const likedSongs = useSelector((state) => state.liked)
   const [tracks, setTracks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -50,38 +46,7 @@ const Section = ({ artist, playlist, length }) => {
               </div>
             ) : (
               tracks.length > 0 &&
-              tracks.map((el) => (
-                <Col className="text-center" key={el.id}>
-                  <div className="position-relative cardContainer">
-                    <img
-                      className="img-fluid pointer w-100"
-                      src={el.album.cover_xl}
-                      alt="track"
-                      onClick={() => dispatch(selectSong(el))}
-                    />
-                    <Button
-                      variant={likedSongs.includes(el) ? 'danger' : 'success'}
-                      className="position-absolute rounded-circle deleteBtn"
-                      onClick={() =>
-                        likedSongs.includes(el)
-                          ? dispatch(unlikeSong(el.id))
-                          : dispatch(likeSong(el))
-                      }
-                    >
-                      {likedSongs.includes(el) ? (
-                        <i className="bi bi-trash3-fill"></i>
-                      ) : (
-                        <i className="bi bi-heart-fill"></i>
-                      )}
-                    </Button>
-                  </div>
-                  <p>
-                    Track: {'"' + el.title + '"'}
-                    <br />
-                    Artist: {el.artist.name}
-                  </p>
-                </Col>
-              ))
+              tracks.map((el) => <SongCard key={el.id} song={el} />)
             )}
           </Row>
         </div>

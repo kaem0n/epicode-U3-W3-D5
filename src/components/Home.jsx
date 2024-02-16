@@ -8,7 +8,11 @@ const Home = () => (
     <Section artist={'queen'} playlist={'Rock Classics'} length={4} />
     <Section artist={'katy perry'} playlist={'Pop Culture'} length={4} />
     <Section artist={'eminem'} playlist={'HipHop'} length={4} />
-    <Section artist={'megadeth'} playlist={'Trash Metal'} length={4} />
+    <Section
+      artist={'claudio baglioni'}
+      playlist={'Italian Classics'}
+      length={4}
+    />
   </Col>
 )
 
