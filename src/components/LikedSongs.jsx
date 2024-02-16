@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 
 const LikedSongs = () => {
   const dispatch = useDispatch()
-  const liked = useSelector((state) => state.songs.liked)
+  const liked = useSelector((state) => state.liked)
 
   return (
     <Row>

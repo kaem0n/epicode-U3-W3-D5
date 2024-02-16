@@ -9,7 +9,7 @@ import { likeSong, selectSong, unlikeSong } from '../redux/actions'
 // eslint-disable-next-line react/prop-types
 const Section = ({ artist, playlist, length }) => {
   const dispatch = useDispatch()
-  const likedSongs = useSelector((state) => state.songs.liked)
+  const likedSongs = useSelector((state) => state.liked)
   const [tracks, setTracks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 

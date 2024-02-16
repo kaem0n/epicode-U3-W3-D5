@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { likeSong, unlikeSong } from '../redux/actions'
 
 const Playerbar = () => {
-  const selectedSong = useSelector((state) => state.songs.selected)
-  const likedSongs = useSelector((state) => state.songs.liked)
+  const selectedSong = useSelector((state) => state.selected)
+  const likedSongs = useSelector((state) => state.liked)
   const dispatch = useDispatch()
 
   const handleLike = (song) => {

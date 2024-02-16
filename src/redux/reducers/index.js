@@ -8,14 +8,12 @@ import {
 } from '../actions'
 
 const defaultState = {
-  songs: {
-    selected: null,
-    liked: [],
-    search: {
-      query: '',
-      list: [],
-      isLoading: false,
-    },
+  selected: null,
+  liked: [],
+  search: {
+    query: '',
+    list: [],
+    isLoading: false,
   },
 }
 
@@ -24,59 +22,41 @@ const reducer = (state = defaultState, action) => {
     case SELECT_SONG:
       return {
         ...state,
-        songs: {
-          ...state.songs,
-          selected: action.payload,
-        },
+        selected: action.payload,
       }
     case LIKE_SONG:
       return {
         ...state,
-        songs: {
-          ...state.songs,
-          liked: [...state.songs.liked, action.payload],
-        },
+        liked: [...state.liked, action.payload],
       }
     case UNLIKE_SONG:
       return {
         ...state,
-        songs: {
-          ...state.songs,
-          liked: state.songs.liked.filter((el) => el.id !== action.payload),
-        },
+        liked: state.liked.filter((el) => el.id !== action.payload),
       }
     case SAVE_QUERY:
       return {
         ...state,
-        songs: {
-          ...state.songs,
-          search: {
-            ...state.songs.search,
-            query: action.payload,
-          },
+        search: {
+          ...state.search,
+          query: action.payload,
         },
       }
     case SAVE_SEARCH_RESULTS:
       return {
         ...state,
-        songs: {
-          ...state.songs,
-          search: {
-            ...state.songs.search,
-            list: action.payload,
-            isLoading: false,
-          },
+        search: {
+          ...state.search,
+          list: action.payload,
+          isLoading: false,
         },
       }
     case LOAD:
       return {
         ...state,
-        songs: {
-          ...state.songs,
-          search: {
-            ...state.songs.search,
-            isLoading: true,
-          },
+        search: {
+          ...state.search,
+          isLoading: true,
         },
       }
     default:

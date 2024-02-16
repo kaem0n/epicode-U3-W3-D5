@@ -8,9 +8,9 @@ import { selectSong } from '../redux/actions'
 
 const SearchPage = () => {
   const dispatch = useDispatch()
-  const searchResults = useSelector((state) => state.songs.search.list)
-  const searchQuery = useSelector((state) => state.songs.search.query)
-  const searchLoading = useSelector((state) => state.songs.search.isLoading)
+  const searchResults = useSelector((state) => state.search.list)
+  const searchQuery = useSelector((state) => state.search.query)
+  const searchLoading = useSelector((state) => state.search.isLoading)
   const defaultQuery = queries[Math.floor(Math.random() * queries.length)]
 
   return (
