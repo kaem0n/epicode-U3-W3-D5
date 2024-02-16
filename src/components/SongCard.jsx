@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Button, Col } from 'react-bootstrap'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { likeSong, selectSong, unlikeSong } from '../redux/actions'
 
