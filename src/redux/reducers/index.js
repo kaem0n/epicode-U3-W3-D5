@@ -17,7 +17,7 @@ const defaultState = {
   },
 }
 
-const reducer = (state = defaultState, action) => {
+const mainReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SELECT_SONG:
       return {
@@ -64,4 +64,4 @@ const reducer = (state = defaultState, action) => {
   }
 }
 
-export default reducer
+export default mainReducer

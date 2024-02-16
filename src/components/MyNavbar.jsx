@@ -29,14 +29,14 @@ const MyNavbar = () => {
         id="sidebar"
       >
         <Container className="flex-column align-items-start">
-          <Navbar.Brand href="index.html">
+          <Link to="/" className="navbar-brand" href="index.html">
             <img
               src="assets/logo/logo.png"
               alt="Spotify Logo"
               width="131"
               height="40"
             />
-          </Navbar.Brand>
+          </Link>
           <Navbar.Collapse id="navbarNavAltMarkup">
             <div className="navbar-nav">
               <ul>
