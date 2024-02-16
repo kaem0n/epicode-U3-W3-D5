@@ -1,12 +1,12 @@
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Spinner from 'react-bootstrap/Spinner'
 import { useEffect, useState } from 'react'
-import { Spinner } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { selectSong } from '../redux/actions'
 
 // eslint-disable-next-line react/prop-types
-const Section = ({ artist, playlist }) => {
+const Section = ({ artist, playlist, length }) => {
   const [tracks, setTracks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ const Section = ({ artist, playlist }) => {
       )
       if (response.ok) {
         const { data } = await response.json()
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < length; i++) {
           setTracks((current) => [...current, data[i]])
         }
       } else {
@@ -36,11 +36,6 @@ const Section = ({ artist, playlist }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    console.log(tracks)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading])
-
   return (
     <Row>
       <Col xs={10}>
@@ -52,6 +47,7 @@ const Section = ({ artist, playlist }) => {
                 <Spinner animation="border" variant="success" />
               </div>
             ) : (
+              tracks.length > 0 &&
               tracks.map((el) => (
                 <Col className="text-center" key={el.id}>
                   <img

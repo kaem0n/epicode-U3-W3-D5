@@ -1,11 +1,26 @@
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
+import Navbar from 'react-bootstrap/Navbar'
+import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
-import Navbar from 'react-bootstrap/Navbar'
+import { Link, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { saveQuery, saveSearch } from '../redux/actions'
 
 const MyNavbar = () => {
+  const location = useLocation()
+  const dispatch = useDispatch()
+  const [inputValue, setInputValue] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    dispatch(saveQuery(inputValue))
+    dispatch(saveSearch(inputValue))
+  }
+
   return (
     <Col xs={2}>
       {/* alcuni tag li ho lasciati normali perché non c'è sovrapposizione diretta con i tag di React-Bootstrap */}
@@ -26,39 +41,54 @@ const MyNavbar = () => {
             <div className="navbar-nav">
               <ul>
                 <li>
-                  <a
+                  <Link
+                    to="/"
                     className="nav-item nav-link d-flex align-items-center"
-                    href="#"
                   >
                     <i className="bi bi-house-door-fill"></i>&nbsp; Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
+                    to="/your-library"
                     className="nav-item nav-link d-flex align-items-center"
-                    href="#"
                   >
                     <i className="bi bi-book-fill"></i>&nbsp; Your Library
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <InputGroup className="mt-3">
-                    <FormControl
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                    />
-                    <div className="input-group-append">
-                      <Button
-                        variant="outline-secondary"
-                        size="sm"
-                        className="h-100 input-group-append d-inline-block"
-                      >
-                        GO
-                      </Button>
-                    </div>
-                  </InputGroup>
+                  <Link
+                    to="/search"
+                    className="nav-item nav-link d-flex align-items-center"
+                  >
+                    <i className="bi bi-search"></i>&nbsp; Search
+                  </Link>
                 </li>
+                {location.pathname === '/search' && (
+                  <li>
+                    <Form onSubmit={handleSubmit}>
+                      <InputGroup className="mt-3">
+                        <FormControl
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                          value={inputValue}
+                          onChange={(e) => setInputValue(e.target.value)}
+                        />
+                        <div className="input-group-append">
+                          <Button
+                            type="submit"
+                            variant="outline-secondary"
+                            size="sm"
+                            className="h-100 input-group-append d-inline-block"
+                          >
+                            GO
+                          </Button>
+                        </div>
+                      </InputGroup>
+                    </Form>
+                  </li>
+                )}
               </ul>
             </div>
           </Navbar.Collapse>
